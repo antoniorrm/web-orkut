@@ -1,3 +1,2 @@
-# 
-Git Teste
+# Git Teste
 
