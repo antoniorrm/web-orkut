@@ -6,7 +6,15 @@
 
     <persistence-unit name="teste_aula_si" >
        	<provider>org.hibernate.ejb.HibernatePersistence</provider>
-       	<class>br.ufc.model.*</class>
+		<class>br.ufc.model.Album</class>
+		<class>br.ufc.model.Amizade</class>
+		<class>br.ufc.model.Categoria</class>
+		<class>br.ufc.model.Comentario</class>
+		<class>br.ufc.model.Forum</class>
+		<class>br.ufc.model.Foto</class>
+		<class>br.ufc.model.Mensagem</class>
+		<class>br.ufc.model.Usuario</class>
+		<class>br.ufc.model.Comunidade</class>
        
  
         <properties>

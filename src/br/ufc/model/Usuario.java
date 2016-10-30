@@ -32,16 +32,14 @@ public class Usuario {
 	private String senha;
 	@Column(name="AVATAR", nullable=false)
 	private String avatar;
-	
-
-	@ManyToMany(mappedBy="usuario", fetch=FetchType.LAZY)
-	private List<Comunidade> comunidades;
-	
-	
+		
 	//UM PARA VÁRIOS
 	@OneToMany(mappedBy="usuario", targetEntity=Album.class, fetch=FetchType.EAGER)
 	private Collection<Album> albuns;
 
+	@ManyToMany(mappedBy="usuarios", fetch=FetchType.LAZY)
+	private List<Comunidade> comunidades;
+	
 	public Long getUsu_id() {
 		return usu_id;
 	}
@@ -98,13 +96,13 @@ public class Usuario {
 		this.avatar = avatar;
 	}
 
-	public List<Comunidade> getComunidades() {
-		return comunidades;
-	}
-
-	public void setComunidades(List<Comunidade> comunidades) {
-		this.comunidades = comunidades;
-	}
+//	public List<Comunidade> getComunidades() {
+//		return comunidades;
+//	}
+//
+//	public void setComunidades(List<Comunidade> comunidades) {
+//		this.comunidades = comunidades;
+//	}
 
 	public Collection<Album> getAlbuns() {
 		return albuns;
