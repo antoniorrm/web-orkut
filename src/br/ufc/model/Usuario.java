@@ -36,7 +36,16 @@ public class Usuario {
 	//UM PARA VÁRIOS
 	@OneToMany(mappedBy="usuario", targetEntity=Album.class, fetch=FetchType.EAGER)
 	private Collection<Album> albuns;
+	
+	
+	@OneToMany(mappedBy="usuarioFonte", targetEntity=Amizade.class, fetch=FetchType.EAGER)
+	private Collection<Usuario> amigosMeus;
+	
+	@OneToMany(mappedBy="usuarioAlvo", targetEntity=Amizade.class, fetch=FetchType.EAGER)
+	private Collection<Usuario> meAdicionaram;
 
+
+	
 	@ManyToMany(mappedBy="usuarios", fetch=FetchType.LAZY)
 	private List<Comunidade> comunidades;
 	
@@ -96,13 +105,6 @@ public class Usuario {
 		this.avatar = avatar;
 	}
 
-//	public List<Comunidade> getComunidades() {
-//		return comunidades;
-//	}
-//
-//	public void setComunidades(List<Comunidade> comunidades) {
-//		this.comunidades = comunidades;
-//	}
 
 	public Collection<Album> getAlbuns() {
 		return albuns;
@@ -112,5 +114,28 @@ public class Usuario {
 		this.albuns = albuns;
 	}
 	
-	
+	public Collection<Usuario> getAmigosMeus() {
+		return amigosMeus;
+	}
+
+	public void setAmigosMeus(Collection<Usuario> amigosMeus) {
+		this.amigosMeus = amigosMeus;
+	}
+
+	public Collection<Usuario> getMeAdicionaram() {
+		return meAdicionaram;
+	}
+
+	public void setMeAdicionaram(Collection<Usuario> meAdicionaram) {
+		this.meAdicionaram = meAdicionaram;
+	}
+
+	public List<Comunidade> getComunidades() {
+		return comunidades;
+	}
+
+	public void setComunidades(List<Comunidade> comunidades) {
+		this.comunidades = comunidades;
+	}
+
 }

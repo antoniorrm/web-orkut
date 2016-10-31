@@ -20,7 +20,7 @@ public class Amizade {
 	@ManyToOne(optional=false)
 	@JoinColumn(name="USUARIO_ID")
 	private Usuario usuarioFonte;
-	
+		
 	//Recebe a Amizade
 	@ManyToOne(optional=false)
 	@JoinColumn(name="AMIGO_ID")

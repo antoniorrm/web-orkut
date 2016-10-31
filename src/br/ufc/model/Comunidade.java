@@ -95,13 +95,13 @@ public class Comunidade {
 		this.foruns = foruns;
 	}
 
-//	public List<Usuario> getUsuarios() {
-//		return usuarios;
-//	}
-//
-//	public void setUsuarios(List<Usuario> usuarios) {
-//		this.usuarios = usuarios;
-//	}
-//	
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
+	
 	
 }
