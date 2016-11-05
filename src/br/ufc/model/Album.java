@@ -29,8 +29,12 @@ public class Album {
 	private Usuario usuario;
 		
 	
-	@Column(name="NOME", nullable=false)
-	private String nome;
+	@Column(name="TITULO", nullable=false)
+	private String titulo;
+	
+	@Column(name="FOTO_CAPA", nullable=false)
+	private String foto_capa;
+	
 	
 	//UM PARA VÁRIOS
 	@OneToMany(mappedBy="album", targetEntity=Foto.class, fetch=FetchType.EAGER)
@@ -60,12 +64,21 @@ public class Album {
 		this.usuario = usuario;
 	}
 
-	public String getNome() {
-		return nome;
+
+	public String getTitulo() {
+		return titulo;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public String getFoto_capa() {
+		return foto_capa;
+	}
+
+	public void setFoto_capa(String foto_capa) {
+		this.foto_capa = foto_capa;
 	}
 
 	public Collection<Foto> getFotos() {

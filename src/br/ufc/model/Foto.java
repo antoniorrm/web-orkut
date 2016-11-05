@@ -32,6 +32,9 @@ public class Foto {
 	@Column(name="IMAGEM", nullable=false)
 	private String imagem;
 	
+	@Column(name="LEGENDA", nullable=false)
+	private String legenda;
+	
 	
 	//UM PARA VÁRIOS
 	@OneToMany(mappedBy="foto", targetEntity=Comentario.class, fetch=FetchType.EAGER)
@@ -85,6 +88,16 @@ public class Foto {
 
 	public void setComentarios(Collection<Comentario> comentarios) {
 		this.comentarios = comentarios;
+	}
+
+
+	public String getLegenda() {
+		return legenda;
+	}
+
+
+	public void setLegenda(String legenda) {
+		this.legenda = legenda;
 	}	
 	
 	

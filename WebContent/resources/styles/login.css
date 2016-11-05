@@ -1,0 +1,78 @@
+body {
+	background-color: #d4dded;
+}
+
+.login .row {
+	margin-top: 10px;
+}
+
+.login .row .principal {
+	padding: 18px 0;
+	background-color: #fff;
+	text-align: center;
+}
+
+@media ( max-width : 767px) {
+	.login .row .principal {
+		margin-bottom: 10px;
+	}
+}
+
+.login .row .principal img.logo {
+	margin-bottom: 10px;
+	max-width: 100%;
+}
+
+.login .row .principal p {
+	margin: 0;
+}
+
+.login .row .principal p strong {
+	color: #b11e89;
+}
+
+.login .row .entrar {
+	padding: 10px;
+	background-color: #e8eefa;
+	border: 3px solid #fff;
+	margin-bottom: 5px;
+}
+
+.login .row .entrar p a {
+	text-decoration: underline;
+}
+
+.login .row .cadastro {
+	padding: 10px;
+	background-color: #e8eefa;
+	border: 3px solid #fff;
+	text-align: center;
+}
+
+.login .row .cadastro p {
+	margin: 0;
+}
+
+.login .row .cadastro p a {
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.login .row .rodape {
+	margin: 10px 0;
+	padding: 2px;
+	background-color: #bccde9;
+	text-align: center;
+}
+
+.login .row .rodape p {
+	margin: 0;
+}
+
+.login .row .rodape p a {
+	text-decoration: underline;
+}
+
+.text-danger {
+	color: #a94442;
+}

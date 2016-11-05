@@ -22,6 +22,8 @@ public class Usuario {
 	
 	@Column(name="NOME", nullable=false)
 	private String nome;
+	@Column(name="SOBRENOME", nullable=false)
+	private String sobrenome;
 	@Column(name="IDADE", nullable=false)
 	private String idade;
 	@Column(name="EMAIL", nullable=false)
@@ -35,20 +37,25 @@ public class Usuario {
 		
 	//UM PARA VÁRIOS
 	@OneToMany(mappedBy="usuario", targetEntity=Album.class, fetch=FetchType.EAGER)
-	private Collection<Album> albuns;
+	private List<Album> albuns;
 	
+	//UM PARA VÁRIOS
+	@OneToMany(mappedBy="usuario", targetEntity=Album.class, fetch=FetchType.EAGER)
+	private Collection<Mensagem> mensagens;
+
+	//UM PARA VÁRIOS
+	@OneToMany(mappedBy="usuario", targetEntity=Album.class, fetch=FetchType.EAGER)
+	private Collection<Mensagem> comentarios;
 	
 	@OneToMany(mappedBy="usuarioFonte", targetEntity=Amizade.class, fetch=FetchType.EAGER)
 	private Collection<Usuario> amigosMeus;
 	
 	@OneToMany(mappedBy="usuarioAlvo", targetEntity=Amizade.class, fetch=FetchType.EAGER)
 	private Collection<Usuario> meAdicionaram;
-
-
 	
 	@ManyToMany(mappedBy="usuarios", fetch=FetchType.LAZY)
 	private List<Comunidade> comunidades;
-	
+
 	public Long getUsu_id() {
 		return usu_id;
 	}
@@ -64,11 +71,19 @@ public class Usuario {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	public String getSobrenome() {
+		return sobrenome;
+	}
+
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
+	}
 
 	public String getIdade() {
 		return idade;
 	}
-
+	
 	public void setIdade(String idade) {
 		this.idade = idade;
 	}
@@ -105,15 +120,30 @@ public class Usuario {
 		this.avatar = avatar;
 	}
 
-
-	public Collection<Album> getAlbuns() {
+	public List<Album> getAlbuns() {
 		return albuns;
 	}
 
-	public void setAlbuns(Collection<Album> albuns) {
+	public void setAlbuns(List<Album> albuns) {
 		this.albuns = albuns;
 	}
-	
+
+	public Collection<Mensagem> getMensagens() {
+		return mensagens;
+	}
+
+	public void setMensagens(Collection<Mensagem> mensagens) {
+		this.mensagens = mensagens;
+	}
+
+	public Collection<Mensagem> getComentarios() {
+		return comentarios;
+	}
+
+	public void setComentarios(Collection<Mensagem> comentarios) {
+		this.comentarios = comentarios;
+	}
+
 	public Collection<Usuario> getAmigosMeus() {
 		return amigosMeus;
 	}
@@ -137,5 +167,5 @@ public class Usuario {
 	public void setComunidades(List<Comunidade> comunidades) {
 		this.comunidades = comunidades;
 	}
-
+	
 }
