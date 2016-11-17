@@ -8,7 +8,6 @@ public interface IComunidadeDAO {
 	
 	public void add(Comunidade c);
 	public void alterar(Comunidade c);
-	public Comunidade recuperarAlbum(Long id);
 	public Comunidade recuperar(Long id);
 	public Comunidade recuperar(String titulo);
 	public void apagar(Long id);

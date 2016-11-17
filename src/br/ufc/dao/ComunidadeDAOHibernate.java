@@ -23,20 +23,12 @@ public class ComunidadeDAOHibernate implements IComunidadeDAO{
 
 	@Override
 	public void alterar(Comunidade c) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Comunidade recuperarAlbum(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public Comunidade recuperar(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return manager.find(Comunidade.class, id);
 	}
 
 	@Override

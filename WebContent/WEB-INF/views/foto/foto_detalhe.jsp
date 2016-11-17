@@ -101,119 +101,106 @@
 	</nav>
 	<div class="container-fluid conteudo">
 		<div class="row">
-			<div class="col-xs-2 col-sm-2 col-lg-2">
+			<div class="col-xs-12 col-sm-12 col-lg-12">
 				<div class="modulo">
-					<div id="perfil">
-						<a href="home"> <img
-							src="<c:url value="/resources/images/${usuario.getAvatar() }" />"
-							alt="${usuario.getAvatar()}"></a>
-						<p class="nome">
-							<a href="home">${usuario.getNome()}</a>
-						</p>
-						<p class="informacoes"></p>
-						<hr>
-						<p>
-							<a href="http://app.e-orkut.com/perfil/editar"
-								class="icone icon-editar-perfil">editar perfil</a>
-						</p>
-						<hr>
-						<ul class="navegacao">
-							<li><a href="addAlbumFormulario" class="icone icon-fotos">albuns</a></li>
-							<li><a href="http://app.e-orkut.com/perfil/albuns/671965"
-								class="icone icon-fotos">fotos</a></li>
-						</ul>
-						<hr>
-						<ul class="navegacao">
-							<li><a href="http://app.e-orkut.com/mensagens"
-								class="icone icon-mensagens">mensagens</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-10 col-sm-10 col-lg-10 nopadding-left-xs">
-				<div class="modulo">
-					<div id="novo-album" class="table">
-						<h1>novo álbum</h1>
-						<form action="addAlbum" method="POST" accept-charset="utf-8"
-							enctype="multipart/form-data">
-							<div style="display: none">
-								<input type="hidden" name="id">
-							</div>
-							<h1></h1>
-							<table class="table-responsive" width="100%">
-								<tr>
-									<th valign="top" width="10%" align="right">título:</th>
-									<td width="90%"><input type="text" name="titulo" value="">
-									</td>
-								</tr>
-								<tr>
-									<th valign="top" align="right">Foto de Capa:</th>
-									<td><img id="myimage" border="0" /> <input type="file"
-										name="imagem" id="imagem" onchange="onFileSelected(event)" />
-									</td>
-								</tr>
-							</table>
-							<hr>
-							<input type="submit" value="criar" class="btn-orkut">
-						</form>
-					</div>
-				</div>
-				<div class="modulo">
-					<div id="albuns">
-
-						<h1>Álbuns do(a) ${usuario.getNome()}
-							(${usuario.getAlbuns().size() })</h1>
+					<div id="foto">
 						<p class="navegacao-estrutural">
-							<a href="http://app.e-orkut.com/home" class="underline">Início</a>
-							&gt; <a href="http://app.e-orkut.com/perfil/id/671965"
-								class="underline">${usuario.getNome()}</a> &gt; Álbuns do(a)
-							${usuario.getNome()}
+							<a href="home" class="underline">Início</a> &gt; <a href="perfil"
+								class="underline"> ${usuario.getNome() } </a> &gt; <a href=""
+								class="underline">Fotos</a> &gt; <a href="" class="underline">
+								${album.getTitulo() }</a> &gt; ${foto.getLegenda() }
 						</p>
-						<p>
-							&nbsp; <span class="pull-right paginacao-simples"></span>
-						</p>
+						<!-- 						<p>
+							mostrando <strong></strong> de <strong>1</strong>
+						</p> -->
 						<hr>
 						<div class="row nopadding">
 							<div class="col-xs-12 col-sm-12 col-lg-12 nopadding">
-							${html}
-							<c:forEach var="album" items="${albuns}">
-								<div class="col-xs-4 col-sm-4 col-lg-4 nopadding">
-									<div class="album">
-										<a href="mostrarFotosAlbum?id=${album.getAlbu_id() }"> <img
-											src="<c:url value="/resources/images/${album.getFoto_capa() }" />"
-											alt="teste">
-										</a>
-										<p>
-											<a href="mostrarFotosAlbum?id=${album.getAlbu_id() }">${album.getTitulo()} (${album.getFotos().size() })</a>
+								<div class="imagem">
+									<div class="informacao">
+										<p class="paginacao">
+											<a href="javascript:void(0);" class="btn btn-default btn-xs"
+												disabled="disabled"><span
+												class="glyphicon glyphicon-chevron-left"></span></a> <a
+												href="javascript:void(0);" class="btn btn-default btn-xs"
+												disabled="disabled"><span
+												class="glyphicon glyphicon-chevron-right"></span></a>
 										</p>
-										<p>
-											<a href="http://app.e-orkut.com/perfil/editaralbum/48180"
-												class="btn-orkut">editar</a> <a
-												href="apagarAlbum?id=${album.getAlbu_id() }"
-												class="btn-orkut">excluir</a>
-										</p>
+										<img
+											src="<c:url value="/resources/images/${foto.getImagem() }" />"
+											alt="${foto.getLegenda() }">
+										<p>${foto.getLegenda() }</p>
+									</div>
+									<hr />
+									<div class="row">
+										<div
+											class="comentarios col-xs-12 col-sm-10 col-sm-offset-1 col-lg-10 col-lg-offset-1">
+											<h1>comentários (${comentarios.size() })</h1>
+											<p>
+												&nbsp; <span class="pull-right paginacao-simples"></span>
+											</p>
+											<hr />
+											${htmlvazio }
+											<c:forEach var="comentario" items="${comentarios }">
+												<div class="media">
+													<div class="media-left">
+														<a href="http://app.e-orkut.com/perfil/id/671965"> <img
+															class="media-object"
+															src="<c:url value="/resources/images/${comentario.getUsuario().getAvatar() }?v100x100=1.0" />"
+															alt="${comentario.getUsuario().getAvatar() }"> 
+															<!-- src="http://app.e-orkut.com/assets/images/usuarios/100x100/sem_avatar.png?v100x100=1.0" -->
+														</a>
+													</div>
+													<div class="media-body">
+														<p>
+															<a href="">${comentario.getUsuario().getNome() }:</a>
+															<span class="pull-right"><a
+																href="http://app.e-orkut.com/excluir/comentario/178843/1874a64fd54a522841b42243d1ef1f6f"
+																onclick="if(!confirm('Tem certeza que deseja excluir esse comentário?')) return false;"
+																class="btn-orkut">excluir</a></span>
+														</p>
+														<p>${comentario.getTexto() }</p>
+													</div>
+												</div>
+											</c:forEach>
+											<hr />
+											<p>
+												&nbsp; <span class="pull-right paginacao-simples"></span>
+											</p>
+											<div id="enviar-comentario">
+												<form action="addComentario" method="post"
+													accept-charset="utf-8">
+													<div style="display: none">
+														<input type="hidden" name="id"
+															value="${foto.getFot_id() }">
+													</div>
+													<p>
+														<textarea name="texto" rows="4" cols="100"
+															placeholder="digite o texto ou cole HTML"></textarea>
+													</p>
+													<p>
+														<input type="submit" value="enviar comentário"
+															class="btn-orkut">
+													</p>
+												</form>
+											</div>
+										</div>
 									</div>
 								</div>
-							</c:forEach>
 							</div>
 						</div>
+						<hr />
 					</div>
-					<hr>
-					<p>
-						&nbsp; <span class="pull-right paginacao-simples"></span>
-					</p>
 				</div>
 			</div>
 		</div>
-
-
 	</div>
+
+
 	<div class="col-xs-12 col-sm-12 col-lg-12">
 		<div class="rodape text-center">
 			<p>©2016 Orcut</p>
 		</div>
 	</div>
-	</div>
-
 </body>
 </html>

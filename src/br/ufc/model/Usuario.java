@@ -45,15 +45,12 @@ public class Usuario {
 
 	//UM PARA VÁRIOS
 	@OneToMany(mappedBy="usuario", targetEntity=Album.class, fetch=FetchType.EAGER)
-	private Collection<Mensagem> comentarios;
+	private Collection<Comentario> comentarios;
 	
 	@OneToMany(mappedBy="usuarioFonte", targetEntity=Amizade.class, fetch=FetchType.EAGER)
-	private Collection<Usuario> amigosMeus;
+	private Collection<Amizade> amizades;
 	
-	@OneToMany(mappedBy="usuarioAlvo", targetEntity=Amizade.class, fetch=FetchType.EAGER)
-	private Collection<Usuario> meAdicionaram;
-	
-	@ManyToMany(mappedBy="usuarios", fetch=FetchType.LAZY)
+	@ManyToMany(mappedBy="usuarios", targetEntity=Comunidade.class, fetch=FetchType.EAGER)
 	private List<Comunidade> comunidades;
 
 	public Long getUsu_id() {
@@ -136,28 +133,12 @@ public class Usuario {
 		this.mensagens = mensagens;
 	}
 
-	public Collection<Mensagem> getComentarios() {
+	public Collection<Comentario> getComentarios() {
 		return comentarios;
 	}
 
-	public void setComentarios(Collection<Mensagem> comentarios) {
+	public void setComentarios(Collection<Comentario> comentarios) {
 		this.comentarios = comentarios;
-	}
-
-	public Collection<Usuario> getAmigosMeus() {
-		return amigosMeus;
-	}
-
-	public void setAmigosMeus(Collection<Usuario> amigosMeus) {
-		this.amigosMeus = amigosMeus;
-	}
-
-	public Collection<Usuario> getMeAdicionaram() {
-		return meAdicionaram;
-	}
-
-	public void setMeAdicionaram(Collection<Usuario> meAdicionaram) {
-		this.meAdicionaram = meAdicionaram;
 	}
 
 	public List<Comunidade> getComunidades() {

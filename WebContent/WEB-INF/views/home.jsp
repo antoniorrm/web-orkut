@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -24,12 +25,18 @@
 
 <title>Orcut - início</title>
 
-<link href="./Orkut - início_files/ie10-viewport-bug-workaround.css" rel="stylesheet">
+<link href="./Orkut - início_files/ie10-viewport-bug-workaround.css"
+	rel="stylesheet">
 
-<link href="${pageContext.request.contextPath}/resources/styles/screen.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/styles/non-responsive.css" rel="stylesheet"> 
+<link
+	href="${pageContext.request.contextPath}/resources/styles/screen.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/styles/non-responsive.css"
+	rel="stylesheet">
 <link rel="stylesheet" href="./Orkut - início_files/chat.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/styles/font-awesome.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/styles/font-awesome.min.css">
 <!--[if lt IE 9]><script src="http://app.e-orkut.com/assets/bootstrap/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
 <!--[if lt IE 9]>
@@ -71,8 +78,7 @@
 				</form>
 				<ul class="nav navbar-nav navbar-right">
 					<li><p class="navbar-text">&lt;${usuario.getEmail()}&gt;</p></li>
-					<li><a
-						href="logout">Sair</a></li>
+					<li><a href="logout">Sair</a></li>
 				</ul>
 			</div>
 		</div>
@@ -82,8 +88,9 @@
 			<div class="col-xs-2 col-sm-2 col-lg-2">
 				<div class="modulo">
 					<div id="perfil">
-						<a href="home">
-						<img src="<c:url value="/resources/images/${usuario.getAvatar() }" />" alt="${usuario.getAvatar()}"></a>
+						<a href="home"> <img
+							src="<c:url value="/resources/images/${usuario.getAvatar() }" />"
+							alt="${usuario.getAvatar()}"></a>
 						<p class="nome">
 							<a href="home">${usuario.getNome()}</a>
 						</p>
@@ -94,9 +101,8 @@
 								class="icone icon-editar-perfil">editar perfil</a>
 						</p>
 						<hr>
-						<ul class="navegacao">	
-							<li><a href="addAlbumFormulario"
-								class="icone icon-fotos">albuns</a></li>
+						<ul class="navegacao">
+							<li><a href="addAlbumFormulario" class="icone icon-fotos">albuns</a></li>
 							<li><a href="http://app.e-orkut.com/perfil/albuns/671965"
 								class="icone icon-fotos">fotos</a></li>
 						</ul>
@@ -138,27 +144,40 @@
 					<div id="comunidades-simples">
 						<h1>
 							minhas comunidades <a
-								href="http://app.e-orkut.com/perfil/comunidades/671965">(0)</a>
+								href="">(${usuario.getComunidades().size() })</a>
 						</h1>
 						<div class="row nopadding">
-							<div class="col-xs-12 col-sm-12 col-lg-12 nopadding">
-								<p class="text-empty">Nenhuma comunidade encontrada.</p>
-							</div>
+							${html }
+							<c:forEach var="comunidade" items="${comunidades }">
+								<div class="col-xs-4 col-sm-4 col-lg-4 nopadding">
+									<div class="perfil">
+										<a href="homecomunidade?com_id=${comunidade.getCom_id() }"> <img
+											src="<c:url value="/resources/images/${comunidade.getImagem() }" />"
+											alt="${comunidade.getImagem() }">
+										</a>
+										<p>
+											<a href="homecomunidade?com_id=${comunidade.getCom_id() }">
+												${comunidade.getNome() } (${comunidade.getUsuarios().size() })</a>
+										</p>
+									</div>
+								</div>
+							</c:forEach>
 						</div>
-						<hr>
-						<p>
-							<a href="http://app.e-orkut.com/perfil/comunidades/671965"
-								class="underline">ver todas</a>
-						</p>
 					</div>
-				</div>
-			</div>
-			<div class="col-xs-12 col-sm-12 col-lg-12">
-				<div class="rodape text-center">
-					<p>©2016 Orcut</p>
+					<hr>
+					<p>
+						<a href="http://app.e-orkut.com/perfil/comunidades/671965"
+							class="underline">ver todas</a>
+					</p>
 				</div>
 			</div>
 		</div>
+		<div class="col-xs-12 col-sm-12 col-lg-12">
+			<div class="rodape text-center">
+				<p>©2016 Orcut</p>
+			</div>
+		</div>
+	</div>
 	</div>
 
 

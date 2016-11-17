@@ -35,6 +35,9 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
 	<bean id="usuarioDAOHibernate" class="br.ufc.dao.UsuarioDAOHibernate"/>
 	<bean id="albumDAOHibernate" class="br.ufc.dao.AlbumDAOHibernate"/>
 	<bean id="fotoDAOHibernate" class="br.ufc.dao.FotoDAOHibernate"/>
+	<bean id="comentarioDAOHibernate" class="br.ufc.dao.ComentarioDAOHibernate"/>
+	<bean id="comunidadeDAOHibernate" class="br.ufc.dao.ComunidadeDAOHibernate"/>
+	<bean id="categoriaDAOHibernate" class="br.ufc.dao.CategoriaDAOHibernate"/>
 	<!-- <bean id="amizadeDAOHibernate" class="br.ufc.dao.AmizadeDAOHibernate"/> -->
 	
 	<bean id="mysqlDataSource" class="org.apache.commons.dbcp.BasicDataSource">

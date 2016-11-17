@@ -23,7 +23,7 @@ public class FotoDAOHibernate implements IFotoDAO {
 
 	@Override
 	public void alterar(Foto foto) {
-		// TODO Auto-generated method stub
+		manager.merge(foto);
 		
 	}
 
@@ -35,8 +35,7 @@ public class FotoDAOHibernate implements IFotoDAO {
 
 	@Override
 	public Foto recuperar(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return manager.find(Foto.class, id);
 	}
 
 	@Override

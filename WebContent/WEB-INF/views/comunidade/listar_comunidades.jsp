@@ -99,6 +99,7 @@
 			</div>
 		</div>
 	</nav>
+
 	<div class="container-fluid conteudo">
 		<div class="row">
 			<div class="col-xs-2 col-sm-2 col-lg-2">
@@ -130,90 +131,54 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-xs-10 col-sm-10 col-lg-10 nopadding-left-xs">
-				<div class="modulo">
-					<div id="novo-album" class="table">
-						<h1>novo álbum</h1>
-						<form action="addAlbum" method="POST" accept-charset="utf-8"
-							enctype="multipart/form-data">
-							<div style="display: none">
-								<input type="hidden" name="id">
-							</div>
-							<h1></h1>
-							<table class="table-responsive" width="100%">
-								<tr>
-									<th valign="top" width="10%" align="right">título:</th>
-									<td width="90%"><input type="text" name="titulo" value="">
-									</td>
-								</tr>
-								<tr>
-									<th valign="top" align="right">Foto de Capa:</th>
-									<td><img id="myimage" border="0" /> <input type="file"
-										name="imagem" id="imagem" onchange="onFileSelected(event)" />
-									</td>
-								</tr>
-							</table>
-							<hr>
-							<input type="submit" value="criar" class="btn-orkut">
-						</form>
-					</div>
-				</div>
-				<div class="modulo">
-					<div id="albuns">
 
-						<h1>Álbuns do(a) ${usuario.getNome()}
-							(${usuario.getAlbuns().size() })</h1>
+
+			<div class="col-xs-10 col-sm-10 col-lg-10 nopadding-xs">
+				<div class="modulo">
+					<div id="comunidades" class="table">
+						<h1>Comunidades (${comunidades.size() })</h1>
 						<p class="navegacao-estrutural">
-							<a href="http://app.e-orkut.com/home" class="underline">Início</a>
-							&gt; <a href="http://app.e-orkut.com/perfil/id/671965"
-								class="underline">${usuario.getNome()}</a> &gt; Álbuns do(a)
-							${usuario.getNome()}
+							<a href="home" class="underline">Início</a> &gt; Comunidades
 						</p>
+						<p>
+							<a href="addComunidadeFormulario" class="btn-orkut">criar
+								comunidade</a> <span class="pull-right paginacao-simples"></span>
+						</p>
+						<hr>
+						<table class="table-responsive" width="100%">
+							<tr>
+								<th width="35%">comunidade</th>
+								<th width="30%">categoria</th>
+								<th width="10%">tópicos</th>
+							</tr>
+							${html }
+							<c:forEach var="comunidade" items="${comunidades }">
+								<tr>
+									<td><a href="http://app.e-orkut.com/comunidade/cmm/1">
+											${comunidade.getNome() } </a></td>
+									<td><a href="http://app.e-orkut.com/perfil/id/1">
+											${comunidade.getCategoria().getNome() } </a></td>
+									<td>${comunidade.getForuns().size() }</td>
+								</tr>
+							</c:forEach>
+						</table>
+						<hr>
 						<p>
 							&nbsp; <span class="pull-right paginacao-simples"></span>
 						</p>
-						<hr>
-						<div class="row nopadding">
-							<div class="col-xs-12 col-sm-12 col-lg-12 nopadding">
-							${html}
-							<c:forEach var="album" items="${albuns}">
-								<div class="col-xs-4 col-sm-4 col-lg-4 nopadding">
-									<div class="album">
-										<a href="mostrarFotosAlbum?id=${album.getAlbu_id() }"> <img
-											src="<c:url value="/resources/images/${album.getFoto_capa() }" />"
-											alt="teste">
-										</a>
-										<p>
-											<a href="mostrarFotosAlbum?id=${album.getAlbu_id() }">${album.getTitulo()} (${album.getFotos().size() })</a>
-										</p>
-										<p>
-											<a href="http://app.e-orkut.com/perfil/editaralbum/48180"
-												class="btn-orkut">editar</a> <a
-												href="apagarAlbum?id=${album.getAlbu_id() }"
-												class="btn-orkut">excluir</a>
-										</p>
-									</div>
-								</div>
-							</c:forEach>
-							</div>
-						</div>
 					</div>
-					<hr>
-					<p>
-						&nbsp; <span class="pull-right paginacao-simples"></span>
-					</p>
 				</div>
 			</div>
+
+
 		</div>
-
-
 	</div>
+
+
 	<div class="col-xs-12 col-sm-12 col-lg-12">
 		<div class="rodape text-center">
 			<p>©2016 Orcut</p>
 		</div>
 	</div>
-	</div>
-
 </body>
 </html>

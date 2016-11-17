@@ -1,6 +1,7 @@
 package br.ufc.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -38,7 +39,7 @@ public class AlbumController {
 	public String addAlbumFormulario(HttpSession session, Model model) {
 		Usuario usuario = (Usuario) session.getAttribute("usuario_logado");
 		List<Album> albuns= (List<Album>) usuario.getAlbuns();
-		String fotovaziahtml = "<p class='text-empty'>Nenhum album encontrada.</p>"; 
+		String fotovaziahtml = "<p class='text-empty'>Nenhum album encontrado.</p>"; 
 		if (albuns.isEmpty()) {
 			model.addAttribute("foto", fotovaziahtml);
 		}
@@ -64,11 +65,12 @@ public class AlbumController {
 		return "redirect:home";
 	}
 	@RequestMapping("/mostrarFotosAlbum")
-	public String mostrarFotosAlbum	(HttpSession session, HttpServletRequest request, Model model) {
+	public String mostrarFotosAlbum	(HttpSession session, 
+			HttpServletRequest request, Model model) {
 		Usuario usuario = (Usuario) session.getAttribute("usuario_logado");
 		int albu_id = Integer.parseInt(request.getParameter("id"));
 		Album album = albumDAO.recuperar((long) albu_id);
-		List<Foto> fotos= (List<Foto>) album.getFotos();
+		Set<Foto> fotos= album.getFotos();
 		String fotovaziahtml = "<p class='text-empty'>Nenhuma foto encontrada.</p>"; 
 		if (fotos.isEmpty()) {
 			model.addAttribute("foto", fotovaziahtml);
@@ -78,5 +80,15 @@ public class AlbumController {
 		model.addAttribute("usuario", usuario);
 		return "album/fotos_album";
 	}
+//	@RequestMapping("/apagarAlbum")
+//	public String apagarAlbum(HttpSession session, HttpServletRequest request, Model model) {
+//		Long albu_id = Long.parseLong(request.getParameter("id"));
+//		Usuario usuario = (Usuario) session.getAttribute("usuario_logado");
+//		Album a = albumDAO.recuperar(albu_id);
+//		usuario.getAlbuns().remove()
+////		albumDAO.apagar(albu_id);
+//		return "redirect:addAlbumFormulario";
+//	}
+	
 	
 }

@@ -23,4 +23,30 @@ public class Categoria {
 	@OneToMany(mappedBy="categoria", targetEntity=Comunidade.class, fetch=FetchType.EAGER)
 	private Collection<Comunidade> comunidades;
 
+	public Long getCat_id() {
+		return cat_id;
+	}
+
+	public void setCat_id(Long cat_id) {
+		this.cat_id = cat_id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public Collection<Comunidade> getComunidades() {
+		return comunidades;
+	}
+
+	public void setComunidades(Collection<Comunidade> comunidades) {
+		this.comunidades = comunidades;
+	}
+	
+	
+
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import br.ufc.interfaces.IAlbumDAO;
 import br.ufc.model.Album;
+import br.ufc.model.Usuario;
 
 @Repository
 public class AlbumDAOHibernate implements IAlbumDAO {
@@ -24,21 +25,25 @@ public class AlbumDAOHibernate implements IAlbumDAO {
 
 	@Override
 	public void alterar(Album album) {
-		// TODO Auto-generated method stub
+		manager.merge(album);
 		
 	}
 
 	@Override
-	public Album recuperarUsu(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Usuario recuperarUsu(Long id) {
+		return manager.find(Usuario.class, id);
 	}
 
 	@Override
 	public Album recuperar(Long id) {
-		String hql = "select u from ALBUM as u "+ "where u.albu_id = :var_id";
+		return manager.find(Album.class, id);
+	}
+
+	@Override
+	public Album recuperar(String titulo) {
+		String hql = "select u from ALBUM as u "+ "where u.titulo = :var_titulo";
 		Query query = manager.createQuery(hql, Album.class);
-		query.setParameter("var_id", id);
+		query.setParameter("var_titulo", titulo);
 		
 		List<Album> albuns = query.getResultList();
 		
@@ -49,20 +54,15 @@ public class AlbumDAOHibernate implements IAlbumDAO {
 	}
 
 	@Override
-	public Album recuperar(String titulo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public void apagar(Long id) {
-		// TODO Auto-generated method stub
-		
+		Album a = this.recuperar(id);
+		manager.remove(a);		
 	}
 
 	@Override
 	public List<Album> listar() {
-		return null;
+		String hql = "select u from ALBUM as u";
+		return manager.createQuery(hql,Album.class).getResultList();
 	}
 
 }

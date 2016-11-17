@@ -2,6 +2,7 @@ package br.ufc.model;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,14 +39,14 @@ public class Comunidade {
 	
 
 	@OneToMany(mappedBy="comunidade", targetEntity=Forum.class, fetch=FetchType.EAGER)
-	private Collection<Forum> foruns;
+	private Set<Forum> foruns;
 	
 	//VÁRIOS PARA VÁRIOS
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name="USUARIO_COMUNIDADE", joinColumns=@JoinColumn(name="COM_ID",
 											referencedColumnName="COM_ID"),
 			inverseJoinColumns= @JoinColumn(name="USU_ID", referencedColumnName="USU_ID"))
-	private List<Usuario> usuarios;
+	private Set<Usuario> usuarios;
 
 	public Long getCom_id() {
 		return com_id;
@@ -87,19 +88,19 @@ public class Comunidade {
 		this.imagem = imagem;
 	}
 
-	public Collection<Forum> getForuns() {
+	public Set<Forum> getForuns() {
 		return foruns;
 	}
 
-	public void setForuns(Collection<Forum> foruns) {
+	public void setForuns(Set<Forum> foruns) {
 		this.foruns = foruns;
 	}
 
-	public List<Usuario> getUsuarios() {
+	public Set<Usuario> getUsuarios() {
 		return usuarios;
 	}
 
-	public void setUsuarios(List<Usuario> usuarios) {
+	public void setUsuarios(Set<Usuario> usuarios) {
 		this.usuarios = usuarios;
 	}
 	

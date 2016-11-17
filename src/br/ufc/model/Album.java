@@ -1,7 +1,9 @@
 package br.ufc.model;
 
 import java.util.Collection;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -37,8 +39,8 @@ public class Album {
 	
 	
 	//UM PARA VÁRIOS
-	@OneToMany(mappedBy="album", targetEntity=Foto.class, fetch=FetchType.EAGER)
-	private Collection<Foto> fotos;
+	@OneToMany(mappedBy="album", targetEntity=Foto.class, fetch=FetchType.EAGER,cascade = CascadeType.ALL)
+	private Set<Foto> fotos;
 
 	public Long getAlbu_id() {
 		return albu_id;
@@ -81,11 +83,11 @@ public class Album {
 		this.foto_capa = foto_capa;
 	}
 
-	public Collection<Foto> getFotos() {
+	public Set<Foto> getFotos() {
 		return fotos;
 	}
 
-	public void setFotos(Collection<Foto> fotos) {
+	public void setFotos(Set<Foto> fotos) {
 		this.fotos = fotos;
 	}
 	

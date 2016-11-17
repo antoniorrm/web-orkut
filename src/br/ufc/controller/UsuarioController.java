@@ -69,14 +69,6 @@ public class UsuarioController {
 		model.addAttribute("usuarios", usuarios);
 		return "usuarios/listar_usuario";
 	}
-
-	@RequestMapping("/home")
-	public String menu(HttpSession session, Model model) {
-		Usuario usuario = (Usuario) session.getAttribute("usuario_logado");
-		model.addAttribute("usuario", usuario);
-		return "home";
-	}
-
 	// Apagar
 	@RequestMapping("/apagarUsuario")
 	public String apagarUsuario(Long id) {

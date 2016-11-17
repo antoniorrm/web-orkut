@@ -184,14 +184,14 @@
 						<div class="row nopadding">
 							<div class="col-xs-12 col-sm-12 col-lg-12 nopadding">
 								${foto }
-								<c:forEach var="fot" items="${fotos }">
+								<c:forEach var="fot" items="${fotos}">
 									<div class='col-xs-4 col-sm-4 col-lg-4 nopadding'>
 										<div class='foto'>
-											<a href="mostrarFoto?id=${fot.getFot_id() }"> <img
+											<a href="fotoDetalhe?idf=${fot.getFot_id() }&ida=${fot.getAlbu_id() }"> <img
 												src="<c:url value="/resources/images/${fot.getImagem() }" />"
 												alt="${fot.getImagem() }"></a>
 											<p>
-												<a href="mostrarFoto?id=${fot.getFot_id() }">${fot.getLegenda() }
+												<a href="fotoDetalhe?idf=${fot.getFot_id() }&ida=${fot.getAlbu_id() }">${fot.getLegenda() }
 													(${fot.getFot_id() })</a>
 											</p>
 										</div>
@@ -209,14 +209,12 @@
 		</div>
 
 	</div>
-	</div>
 
 
 	<div class="col-xs-12 col-sm-12 col-lg-12">
 		<div class="rodape text-center">
 			<p>©2016 Orcut</p>
 		</div>
-	</div>
 	</div>
 
 </body>
