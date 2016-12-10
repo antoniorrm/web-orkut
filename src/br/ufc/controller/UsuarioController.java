@@ -1,10 +1,13 @@
 package br.ufc.controller;
 
-import java.io.File;
-import java.nio.file.Path;
+
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,7 @@ import br.ufc.excecoes.LoginException;
 import br.ufc.interfaces.IAmizadeDAO;
 import br.ufc.interfaces.IUsuarioDAO;
 import br.ufc.model.Amizade;
+import br.ufc.model.Comunidade;
 import br.ufc.model.Usuario;
 import br.ufc.util.AulaFileUtil;
 
@@ -62,6 +66,60 @@ public class UsuarioController {
 		return "redirect:homelogin";
 	}
 
+	// BUSCAR
+	@RequestMapping("/buscarUsuario")
+	public String buscarUsuario(HttpSession session, String txt, Model model) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario_logado");
+		List<Usuario> resultado = usuarioDAO.recuperar(txt, usuario.getUsu_id());
+		for (Amizade a : usuario.getAmizades()) {
+			resultado.remove(a.getUsuarioAlvo());
+		}
+		String cvaziahtml = "<div class='col-xs-12 col-sm-12 col-lg-12 nopadding'><p class='text-empty'>Nenhum usuario encontrada.</p></div>";
+		if (resultado.isEmpty()) {
+			model.addAttribute("html", cvaziahtml);
+		}
+		model.addAttribute("usuario", usuario);
+		model.addAttribute("txt", txt);
+		model.addAttribute("usuarios", resultado);
+		return "buscar/perfil";
+	}
+
+	// Perfil
+	@RequestMapping("/perfilUsuario")
+	public String perfilUsuario(HttpSession session, HttpServletRequest request, Model model) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario_logado");
+		Long usu_id = Long.parseLong(request.getParameter("usu_id"));
+		Usuario amigo = usuarioDAO.recuperar(usu_id);
+		String html = "<p><a href='addAmizade?amigo=" + usu_id
+				+ "' class=\"icone icon-usuario-adicionar\">+ amigo</a></p>";
+		//verifico se já existe amizade
+		Amizade verificar = new Amizade();
+		verificar.setUsuarioAlvo(amigo);
+		verificar.setUsuarioFonte(usuario);
+		if (!amizadeDAO.existeAmizade(verificar)) {
+			model.addAttribute("add", html);
+		}
+		List<Usuario> amigos = new ArrayList<Usuario>();
+		for (Amizade a : amigo.getAmizades()) {
+			amigos.add(a.getUsuarioAlvo());
+		}
+		
+		Set<Comunidade> comunidades = amigo.getComunidades();
+		String cvaziahtml = "<div class='col-xs-12 col-sm-12 col-lg-12 nopadding'><p class='text-empty'>Nenhuma comunidade encontrada.</p></div>";
+		if (comunidades.isEmpty()) {
+			model.addAttribute("html", cvaziahtml);
+		}
+		String cvaziahtmla = "<div class='col-xs-12 col-sm-12 col-lg-12 nopadding'><p class='text-empty'>Nenhuma amigo encontrada.</p></div>";
+		if (amigos.isEmpty()) {
+			model.addAttribute("htmla", cvaziahtmla);
+		}
+		model.addAttribute("comunidades", comunidades);
+		model.addAttribute("usuario", usuario);
+		model.addAttribute("amigo", amigo);
+		model.addAttribute("amigos", amigos);
+		return "perfil/perfil_usuario";
+	}
+
 	// LISTAR
 	@RequestMapping("/listarUsuario")
 	public String listarUsuario(Model model) {
@@ -69,6 +127,7 @@ public class UsuarioController {
 		model.addAttribute("usuarios", usuarios);
 		return "usuarios/listar_usuario";
 	}
+
 	// Apagar
 	@RequestMapping("/apagarUsuario")
 	public String apagarUsuario(Long id) {
@@ -90,56 +149,11 @@ public class UsuarioController {
 			String path = context.getRealPath("/");
 			path += "resources/images/" + u.getLogin() + ".png";
 			AulaFileUtil.deleteFile(path);
-			
+
 			AulaFileUtil.saveFile(path, image);
 		}
 		usuarioDAO.alterar(u);
 		return "redirect:listarUsuario";
 	}
-
-	@RequestMapping("/inserirAmizadeFormulario")
-	public String inserirAmizadeFormulario(HttpSession session, Model model) {
-		Usuario usuario = (Usuario) session.getAttribute("usuario_logado");
-		List<Usuario> potenciaisAmigos = usuarioDAO.listar();
-		potenciaisAmigos.remove(usuario);
-
-//		AmizadeCheckboxForm acf = new AmizadeCheckboxForm();
-		List<Amizade> minhasAmizades = this.amizadeDAO.listarAmizadesDeId(usuario.getUsu_id());
-		 
-		 if(minhasAmizades != null && minhasAmizades.size() > 0){
-			 
-			 //Long[] vetorIds = new Long[minhasAmizades.size()];
-			 //int i = 0;
-			 for(Amizade amizade : minhasAmizades){
-				 Long amigoId = amizade.getUsuarioAlvo().getUsu_id();
-				 Usuario amigoTmp = new Usuario();
-				 amigoTmp.setUsu_id(amigoId);
-				 potenciaisAmigos.remove(amigoTmp);
-				 
-//				 vetorIds[i] = amigoId;
-//				 i++;
-			 }
-//			 acf.setAmigos(vetorIds);
-		 }
-
-		model.addAttribute("usuario", usuario);
-		model.addAttribute("potenciais_amigos", potenciaisAmigos);
-//		model.addAttribute("amizade", acf);
-
-		return "usuarios/inserir_amizade_formulario";
-	}
-
-//	@RequestMapping("/inserirAmizade")
-//	public String inserirAmizade(HttpSession session, AmizadeCheckboxForm amizades) {
-//		Usuario amigoFonte = (Usuario) session.getAttribute("usuario_logado");
-//		for (Long id : amizades.getAmigos()) {
-//			Usuario amigoAlvo = usuarioDAO.recuperar(id);
-//			Amizade amigo = new Amizade();
-//			amigo.setUsuarioFonte(amigoFonte);
-//			amigo.setUsuarioAlvo(amigoAlvo);
-//			amizadeDAO.inserir(amigo);
-//		}
-//		return "redirect:listarUsuario";
-//	}
 
 }

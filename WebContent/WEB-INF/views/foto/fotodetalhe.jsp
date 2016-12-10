@@ -7,9 +7,9 @@
 					<div id="foto">
 						<p class="navegacao-estrutural">
 							<a href="home" class="underline">Início</a> &gt; <a href="perfil"
-								class="underline"> ${usuario.getNome() } </a> &gt; <a href=""
+								class="underline"> ${amigo.getNome() } </a> &gt; <a href=""
 								class="underline">Fotos</a> &gt; <a href="" class="underline">
-								${album.getTitulo() }</a> &gt; ${foto.getLegenda() }
+								${album.getTitulo() }</a> &gt; ${amigo.getLegenda() }
 						</p>
 						<!-- 						<p>
 							mostrando <strong></strong> de <strong>1</strong>

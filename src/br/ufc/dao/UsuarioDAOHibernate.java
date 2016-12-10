@@ -39,6 +39,19 @@ public class UsuarioDAOHibernate implements IUsuarioDAO{
 		// TODO Auto-generated method stub
 		return manager.find(Usuario.class, id);
 	}
+	
+	@Override
+	public List<Usuario> recuperar(String busca, Long id) {
+		String hql = "select u from USUARIO as u where u.usu_id != :id and u.nome like :q";
+		Query query = manager.createQuery(hql, Usuario.class);
+		query.setParameter("q", '%' + busca + '%');
+		query.setParameter("id", id);
+		
+		List<Usuario> usuarios = query.getResultList();
+		
+		return usuarios;
+	}
+	
 	@Override
 	public Usuario recuperar(String login) {
 		String hql = "select u from USUARIO as u "+ "where u.login = :var_login";

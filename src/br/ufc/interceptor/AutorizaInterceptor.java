@@ -10,12 +10,10 @@ public class AutorizaInterceptor extends HandlerInterceptorAdapter{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		// TODO Auto-generated method stub
-
 		String uri = request.getRequestURI();
 		if(uri.endsWith("homelogin") || uri.endsWith("login") || 
 				uri.endsWith("inserirUsuario") || uri.endsWith("inserirUsuarioFormulario")
-				|| uri.endsWith("login.css") || uri.endsWith("logo.png"))
+				|| uri.endsWith("login.css") || uri.endsWith("formulario.css") || uri.endsWith("logo.png"))
 			return true;
 		
 

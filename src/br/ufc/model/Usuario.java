@@ -2,6 +2,7 @@ package br.ufc.model;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -51,7 +52,7 @@ public class Usuario {
 	private Collection<Amizade> amizades;
 	
 	@ManyToMany(mappedBy="usuarios", targetEntity=Comunidade.class, fetch=FetchType.EAGER)
-	private List<Comunidade> comunidades;
+	private Set<Comunidade> comunidades;
 
 	public Long getUsu_id() {
 		return usu_id;
@@ -141,12 +142,46 @@ public class Usuario {
 		this.comentarios = comentarios;
 	}
 
-	public List<Comunidade> getComunidades() {
+	public Set<Comunidade> getComunidades() {
 		return comunidades;
 	}
 
-	public void setComunidades(List<Comunidade> comunidades) {
+	public void setComunidades(Set<Comunidade> comunidades) {
 		this.comunidades = comunidades;
 	}
+
+	public Collection<Amizade> getAmizades() {
+		return amizades;
+	}
+
+	public void setAmizades(Collection<Amizade> amizades) {
+		this.amizades = amizades;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((usu_id == null) ? 0 : usu_id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		if (usu_id == null) {
+			if (other.usu_id != null)
+				return false;
+		} else if (!usu_id.equals(other.usu_id))
+			return false;
+		return true;
+	}
+	
 	
 }

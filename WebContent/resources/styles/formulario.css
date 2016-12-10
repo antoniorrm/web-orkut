@@ -1,0 +1,54 @@
+body {
+	background-color: #d4dded;
+}
+
+.form .row {
+	margin-top: 10px;
+}
+
+.form .row .principal {
+	padding: 30px 0;
+	text-align: center;
+	margin-bottom: 5px;
+	background-color: #fff;
+}
+
+.form .row .principal img.logo {
+	margin-bottom: 10px;
+	max-width: 100%;
+}
+
+.form .row .formulario {
+	padding: 10px;
+	background-color: #e8eefa;
+	border: 3px solid #fff;
+	margin-bottom: 5px;
+}
+
+.form .row .formulario h1 {
+	margin: 0 0 10px 0;
+	font-size: 18px;
+}
+
+.form .row .formulario p a {
+	text-decoration: underline;
+}
+
+.form .row .rodape {
+	margin: 10px 0;
+	padding: 2px;
+	background-color: #bccde9;
+	text-align: center;
+}
+
+.form .row .rodape p {
+	margin: 0;
+}
+
+.form .row .rodape p a {
+	text-decoration: underline;
+}
+
+.text-danger {
+	color: #a94442;
+}

@@ -1,7 +1,5 @@
 package br.ufc.model;
 
-import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -102,6 +100,31 @@ public class Comunidade {
 
 	public void setUsuarios(Set<Usuario> usuarios) {
 		this.usuarios = usuarios;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((com_id == null) ? 0 : com_id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Comunidade other = (Comunidade) obj;
+		if (com_id == null) {
+			if (other.com_id != null)
+				return false;
+		} else if (!com_id.equals(other.com_id))
+			return false;
+		return true;
 	}
 	
 	

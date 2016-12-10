@@ -22,10 +22,9 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 	crossorigin="anonymous">
-<link href="./Orkut - entrar_files/ie10-viewport-bug-workaround.css"
+<link type="text/css"
+	href="${pageContext.request.contextPath}/resources/styles/login.css"
 	rel="stylesheet">
-
-<link type="text/css" href="${pageContext.request.contextPath}/resources/styles/login.css" rel="stylesheet">
 
 <!--[if lt IE 9]><script src="assets/bootstrap/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
@@ -40,7 +39,8 @@
 			<div class="col-xs-12 col-sm-9 col-lg-9">
 				<div class="principal">
 					<p>&nbsp;</p>
-					<br> <img src="http://localhost:8080/web-orkut/resources/logo.png"
+					<br> <img
+						src="${pageContext.request.contextPath}/resources/logo.png"
 						class="logo" alt="Orcut">
 					<p>
 						<strong>Conecte-se</strong> com amigos e familiares usando recados
@@ -55,8 +55,7 @@
 			<div class="col-xs-12 col-sm-3 col-lg-3">
 				<div class="entrar">
 					<p>Entrar no Orcut com a sua conta orcut.</p>
-					<form action="login"
-						method="POST" class="form-horizontal">
+					<form action="login" method="POST" class="form-horizontal">
 						<div class="form-group">
 							<label for="login"
 								class="col-xs-12 col-sm-2 col-lg-2 control-label">Login</label>
@@ -102,13 +101,10 @@
 					</p>
 				</div>
 			</div>
-			<div class="col-xs-12 col-sm-12 col-lg-12">
+				<div class="col-xs-12 col-sm-12 col-lg-12">
 				<div class="rodape">
 					<p>©2016 Orcut</p>
 				</div>
-			</div>
-			<div class="col-xs-12 col-sm-12 col-lg-12 hidden-xs">
-				<center></center>
 			</div>
 		</div>
 	</div>

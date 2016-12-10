@@ -17,6 +17,11 @@
 <link rel="icon" href="http://app.e-orkut.com/favicon.ico">
 <title>Orkut - cadastro</title>
 
+<link href="${pageContext.request.contextPath}/resources/styles/formulario.css" rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/styles/non-responsive.css"
+	rel="stylesheet">
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
@@ -26,12 +31,8 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 	crossorigin="anonymous"></script>
-
-<!-- <link href="./Orkut - cadastro_files/ie10-viewport-bug-workaround.css"
-	rel="stylesheet">
-
 <link href="./Orkut - cadastro_files/formulario.css" rel="stylesheet">
-
+<!-- 
 [if lt IE 9]><script src="http://app.e-orkut.com/assets/bootstrap/js/ie8-responsive-file-warning.js"></script><![endif]
 <script type="text/javascript" async=""
 	src="./Orkut - cadastro_files/recaptcha__pt.js"></script>
@@ -63,8 +64,8 @@
 				<div class="col-xs-12 col-sm-12 col-lg-12">
 					<div class="principal">
 						<a href="http://app.e-orkut.com/autenticacao/login"> <img
-							src="./Orkut - cadastro_files/orkut_logo.png" class="logo"
-							alt="Orkut">
+							src="${pageContext.request.contextPath}/resources/logo.png" class="logo"
+							alt="Orcut">
 						</a>
 					</div>
 				</div>
@@ -96,7 +97,7 @@
 							<label for="idade"
 								class="col-xs-12 col-sm-5 col-lg-5 control-label">Idade:</label>
 							<div class="col-xs-12 col-sm-7 col-lg-7">
-								<input type="date" name="idade" class="form-control" id="idade"
+								<input type="text" name="idade" class="form-control" id="idade"
 									value="" placeholder="Idade">
 							</div>
 						</div>
@@ -145,7 +146,7 @@
 									class="form-control" id="imagem" />
 							</div>
 						</div>
-						<div class="form-group">
+<!-- 						<div class="form-group">
 							<label for="captcha"
 								class="col-xs-12 col-sm-5 col-lg-5 control-label">
 								Digite o captcha </label>
@@ -165,10 +166,10 @@
 											style="width: 250px; height: 40px; border: 1px solid #c1c1c1; margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea>
 									</div>
 								</div>
-								<!-- <script type="text/javascript"
-									src="./Orkut - cadastro_files/api.js" async="" defer=""></script> -->
+								<script type="text/javascript"
+									src="./Orkut - cadastro_files/api.js" async="" defer=""></script>
 							</div>
-						</div>
+						</div> -->
 						<div class="form-group">
 							<div
 								class="col-xs-12 col-sm-7 col-lg-7 col-sm-offset-5 col-lg-offset-5">
@@ -178,18 +179,4 @@
 					</form>
 				</div>
 			</div>
-
-
-
-			<div class="col-xs-12 col-sm-12 col-lg-12">
-				<div class="rodape">
-					<p>©2016 Orcut</p>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- <script src="./Orkut - cadastro_files/ie10-viewport-bug-workaround.js"></script> -->
-
-</body>
-</html>
+<jsp:include page="../rodape.jsp"></jsp:include>

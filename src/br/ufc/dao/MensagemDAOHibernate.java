@@ -2,33 +2,41 @@ package br.ufc.dao;
 
 import java.util.List;
 
-import br.ufc.interfaces.IMensagemDAO;
-import br.ufc.model.Mensagem;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
+import org.springframework.stereotype.Repository;
+
+import br.ufc.interfaces.IMensagemDAO;
+import br.ufc.model.Comunidade;
+import br.ufc.model.Mensagem;
+import br.ufc.model.Usuario;
+
+@Repository
 public class MensagemDAOHibernate implements IMensagemDAO{
 
+	
+	@PersistenceContext
+	private EntityManager manager;
+	
 	@Override
 	public void add(Mensagem mensagem) {
-		// TODO Auto-generated method stub
-		
+		manager.persist(mensagem);
 	}
 
 	@Override
 	public void alterar(Mensagem mensagem) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Mensagem recuperarUsu(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Usuario recuperarUsu(Long id) {
+		return manager.find(Usuario.class, id);
 	}
 
 	@Override
 	public Mensagem recuperar(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return manager.find(Mensagem.class, id);
 	}
 
 	@Override

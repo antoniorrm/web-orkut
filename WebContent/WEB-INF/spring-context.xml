@@ -38,7 +38,9 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
 	<bean id="comentarioDAOHibernate" class="br.ufc.dao.ComentarioDAOHibernate"/>
 	<bean id="comunidadeDAOHibernate" class="br.ufc.dao.ComunidadeDAOHibernate"/>
 	<bean id="categoriaDAOHibernate" class="br.ufc.dao.CategoriaDAOHibernate"/>
-	<!-- <bean id="amizadeDAOHibernate" class="br.ufc.dao.AmizadeDAOHibernate"/> -->
+	<bean id="amizadeDAOHibernate" class="br.ufc.dao.AmizadeDAOHibernate"/>
+	<bean id="forumDAOHibernate" class="br.ufc.dao.ForumDAOHibernate"/>
+	<bean id="mensagemDAOHibernate" class="br.ufc.dao.MensagemDAOHibernate"/>
 	
 	<bean id="mysqlDataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -72,3 +74,4 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
 	<tx:annotation-driven />
 
 </beans>
+

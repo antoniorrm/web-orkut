@@ -2,38 +2,43 @@ package br.ufc.dao;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.springframework.stereotype.Repository;
+
 import br.ufc.interfaces.IForumDAO;
 import br.ufc.model.Forum;
+import br.ufc.model.Usuario;
 
+@Repository
 public class ForumDAOHibernate implements IForumDAO {
 
+	@PersistenceContext
+	private EntityManager manager;
+	
 	@Override
 	public void add(Forum forum) {
-		// TODO Auto-generated method stub
-
+		manager.persist(forum);
 	}
 
 	@Override
 	public void alterar(Forum forum) {
-		// TODO Auto-generated method stub
-
+		manager.merge(forum);
 	}
 
 	@Override
-	public Forum recuperarUsu(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Usuario recuperarUsu(Long id) {
+		return manager.find(Usuario.class, id);
 	}
 
 	@Override
 	public Forum recuperar(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return manager.find(Forum.class, id);
 	}
 
 	@Override
 	public Forum recuperar(String titulo) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
