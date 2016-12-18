@@ -89,6 +89,9 @@ public class UsuarioController {
 	public String perfilUsuario(HttpSession session, HttpServletRequest request, Model model) {
 		Usuario usuario = (Usuario) session.getAttribute("usuario_logado");
 		Long usu_id = Long.parseLong(request.getParameter("usu_id"));
+		if (usu_id == usuario.getUsu_id()) {
+			return "redirect:home";
+		}
 		Usuario amigo = usuarioDAO.recuperar(usu_id);
 		String html = "<p><a href='addAmizade?amigo=" + usu_id
 				+ "' class=\"icone icon-usuario-adicionar\">+ amigo</a></p>";
@@ -99,7 +102,7 @@ public class UsuarioController {
 		if (!amizadeDAO.existeAmizade(verificar)) {
 			model.addAttribute("add", html);
 		}
-		List<Usuario> amigos = new ArrayList<Usuario>();
+		Set<Usuario> amigos = new HashSet<Usuario>();
 		for (Amizade a : amigo.getAmizades()) {
 			amigos.add(a.getUsuarioAlvo());
 		}
@@ -119,8 +122,11 @@ public class UsuarioController {
 		model.addAttribute("amigos", amigos);
 		return "perfil/perfil_usuario";
 	}
+	
+	
+	
 
-	// LISTAR
+/*	// LISTAR
 	@RequestMapping("/listarUsuario")
 	public String listarUsuario(Model model) {
 		List<Usuario> usuarios = usuarioDAO.listar();
@@ -155,5 +161,5 @@ public class UsuarioController {
 		usuarioDAO.alterar(u);
 		return "redirect:listarUsuario";
 	}
-
+*/
 }

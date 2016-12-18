@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <meta name="description"
-	content="Orkut a rede social do mundo, conheça o novo, conheça o orkut2!">
+	content="Orcut a rede social do mundo, conheça o novo, conheça o orkut2!">
 <meta name="keywords"
 	content="orkut, orkut2, orkut 2, orkut entrar, novo orkut, orkut novo, orkut login, orkuti, orkute, id profile, idprofile, Orkut login, Orkut login entrar, orkut entrar agora, Entrar no orkut, Okut, Orkut Account login, Orkut sign in">
 <meta http-equiv="Content-Language" content="pt-br, en">
@@ -56,7 +56,7 @@
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
 					<li><a href="home">Início</a></li>
-					<li><a href="http://app.e-orkut.com/perfil/id/671965">Perfil</a></li>
+					<li><a href="perfilUsuario?usu_id=${usuario.getUsu_id() }">Perfil</a></li>
 					<li><a href="amigos">Amigos</a></li>
 					<li><a href="comunidades">Comunidades</a></li>
 				</ul>

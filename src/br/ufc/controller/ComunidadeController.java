@@ -127,9 +127,9 @@ public class ComunidadeController {
 		Usuario usuario = (Usuario) session.getAttribute("usuario_logado");
 //		String nome = request.getParameter(arg0)
 		List<Comunidade> resultado = comunidadeDAO.recuperar(txt);
-		for (Comunidade comunidade : usuario.getComunidades()) {
-			resultado.remove(comunidade);
-		}
+//		for (Comunidade comunidade : usuario.getComunidades()) {
+//			resultado.remove(comunidade);
+//		}
 		String cvaziahtml = "<div class='col-xs-12 col-sm-12 col-lg-12 nopadding'><p class='text-empty'>Nenhum usuario encontrada.</p></div>";
 		if (resultado.isEmpty()) {
 			model.addAttribute("html", cvaziahtml);

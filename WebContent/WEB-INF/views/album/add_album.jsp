@@ -76,7 +76,7 @@
 					<hr>
 					<div class="row nopadding">
 						<div class="col-xs-12 col-sm-12 col-lg-12 nopadding">
-							${html}
+							${album }
 							<c:forEach var="album" items="${albuns}">
 								<div class="col-xs-4 col-sm-4 col-lg-4 nopadding">
 									<div class="album">

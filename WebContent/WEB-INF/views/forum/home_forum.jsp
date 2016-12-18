@@ -5,7 +5,7 @@
 		<div class="col-xs-2 col-sm-2 col-lg-2">
 			<div class="modulo">
 				<div id="perfil">
-					<a href=""> <img
+					<a href="homecomunidade?com_id=${comunidade.getCom_id() }"> <img
 						src="<c:url value="/resources/images/${comunidade.getImagem() }" />"
 						alt="${comunidade.getImagem() }">
 					</a>

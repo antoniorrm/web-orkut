@@ -39,9 +39,9 @@ public class AlbumController {
 	public String addAlbumFormulario(HttpSession session, Model model) {
 		Usuario usuario = (Usuario) session.getAttribute("usuario_logado");
 		List<Album> albuns= (List<Album>) usuario.getAlbuns();
-		String fotovaziahtml = "<p class='text-empty'>Nenhum album encontrado.</p>"; 
+		String albumvaziahtml = "<p class='text-empty'>Nenhum album encontrado.</p>"; 
 		if (albuns.isEmpty()) {
-			model.addAttribute("foto", fotovaziahtml);
+			model.addAttribute("album", albumvaziahtml);
 		}
 		model.addAttribute("albuns", albuns);
 		model.addAttribute("usuario", usuario);

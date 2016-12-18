@@ -46,9 +46,9 @@ public class PerfilController {
 		Long usu_id = Long.parseLong(request.getParameter("usu_id"));
 		Usuario amigo = usuarioDAO.recuperar(usu_id);
 		List<Album> albuns= (List<Album>) amigo.getAlbuns();
-		String fotovaziahtml = "<p class='text-empty'>Nenhum album encontrado.</p>"; 
+		String albumvaziahtml = "<p class='text-empty'>Nenhum album encontrado.</p>"; 
 		if (albuns.isEmpty()) {
-			model.addAttribute("foto", fotovaziahtml);
+			model.addAttribute("album", albumvaziahtml);
 		}
 		model.addAttribute("albuns", albuns);
 		model.addAttribute("usuario", usuario);

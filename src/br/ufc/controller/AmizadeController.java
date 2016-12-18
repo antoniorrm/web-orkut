@@ -1,5 +1,6 @@
 package br.ufc.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -77,4 +78,21 @@ public class AmizadeController {
 
 		return "usuarios/inserir_amizade_formulario";
 	}
+	
+	@RequestMapping("/amigos")
+	public String amigos(HttpSession session, Model model) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario_logado");
+		List<Usuario> amigos = new ArrayList();
+		for (Amizade a : usuario.getAmizades()) {
+			amigos.add(a.getUsuarioAlvo());
+		}
+		String cvaziahtml = "<div class='col-xs-12 col-sm-12 col-lg-12 nopadding'><p class='text-empty'>Nenhuma comunidade encontrada.</p></div>";
+		if (amigos.isEmpty()) {
+			model.addAttribute("html", cvaziahtml);
+		}
+		model.addAttribute("usuario", usuario);
+		model.addAttribute("amigos", amigos);
+		return "perfil/amigos";
+	}
+
 }
